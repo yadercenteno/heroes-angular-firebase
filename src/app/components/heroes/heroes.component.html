@@ -1,0 +1,45 @@
+<h1>Ejemplo de uso de Angular y Firebase</h1>
+<hr>
+
+<div class="row animated fadeIn fast">
+  <div class="col-md-12 text-right">
+    <button [routerLink]="['/heroe', 'nuevo']" type="button" class="btn btn-outline-primary">Nuevo héroe</button>
+  </div>
+</div>
+<br>
+<div class="row animated fadeIn fast">
+  <div class="col-md-12">
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Casa</th>
+            <th scope="col" class="text-center">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let k of heroes | keys; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ heroes[k].nombre }}</td>
+            <td>{{ heroes[k].casa }}</td>
+            <td class="text-right ancho">
+              <button [routerLink]="['/heroe', k]" type="button" class="btn btn-outline-success">Editar</button>&nbsp;
+              <button (click)="borraHeroe(k)" type="button" class="btn btn-outline-danger">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="(heroes | keys).length === 0 && !loading" class="alert alert-info" role="alert"> <strong>No hay registros</strong> que mostrar </div>
+
+      <div *ngIf="loading" class="alert alert-warning" role="alert">
+        <strong>Cargando...</strong> por favor, esperá un momento.
+      </div>
+    </div>
+
+  </div>
+
+</div>
